@@ -40,7 +40,7 @@ const jsonLd = JSON.stringify({
     ? image.startsWith("http")
       ? image
       : `${DATA.url}${image}`
-    : `${DATA.url}/og_image.png`,
+    : `${DATA.url}${DATA.ogImage}`,
   url: `${DATA.url}/blog/${slug}`,
   author: {
     "@type": "Person",

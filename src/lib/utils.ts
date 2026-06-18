@@ -5,6 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/** Map lowercase HTML attrs from rehype/shiki to React DOM props. */
+export function normalizeReactDomProps<T extends Record<string, unknown>>(props: T) {
+  const { tabindex, ...rest } = props as T & { tabindex?: string | number };
+  if (tabindex == null) {
+    return rest;
+  }
+  return { ...rest, tabIndex: Number(tabindex) };
+}
+
 export function formatDate(date: string) {
   let currentDate = new Date().getTime();
   if (!date.includes("T")) {

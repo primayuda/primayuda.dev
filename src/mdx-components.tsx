@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/mdx/code-block";
 import { MediaContainer } from "@/components/mdx/media-container";
+import { normalizeReactDomProps } from "@/lib/utils";
 import type { ComponentProps } from "react";
 
 type CodeProps = ComponentProps<"code"> & {
@@ -34,7 +35,7 @@ export const mdxComponents = {
   ),
   code: ({ children, ...props }: CodeProps) => {
     if (props["data-language"]) {
-      return <code {...props}>{children}</code>;
+      return <code {...normalizeReactDomProps(props)}>{children}</code>;
     }
     return (
       <code

@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
+import { CompanyLogo } from "@/components/company-logo";
 import HackathonsSection from "@/components/section/hackathons-section";
 import PhotosSection from "@/components/section/photos-section";
 import ProjectsSection from "@/components/section/projects-section";
@@ -56,15 +57,11 @@ const sectionComponents: Record<string, React.ReactNode> = {
                 className="flex items-center gap-x-3 justify-between group"
               >
                 <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                  {education.logoUrl ? (
-                    <img
-                      src={education.logoUrl}
-                      alt={education.school}
-                      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
-                    />
-                  ) : (
-                    <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
-                  )}
+                  <CompanyLogo
+                    lightSrc={education.logoUrl}
+                    darkSrc={education.logoUrlDark}
+                    alt={education.school}
+                  />
                   <div className="flex-1 min-w-0 flex flex-col gap-0.5">
                     <div className="font-semibold leading-none flex items-center gap-2">
                       {education.school}
@@ -74,7 +71,11 @@ const sectionComponents: Record<string, React.ReactNode> = {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                  <span>{education.start} - {education.end}</span>
+                  <span>
+                    {education.start === education.end
+                      ? education.end
+                      : `${education.start} - ${education.end}`}
+                  </span>
                 </div>
               </a>
             </BlurFade>
@@ -142,7 +143,7 @@ export default function HomePage() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+                text={`Hi, I'm ${DATA.preferredName}`}
               />
               <BlurFadeText
                 className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"

@@ -3,9 +3,9 @@ export const CONFIG = {
   // Site Settings
   // ---------------------------------------------------------------------------
   site: {
-    url: "https://alexmercer.dev",
-    locale: "en_US",
-    twitterHandle: "@alexmercer_dev",
+    url: "https://primayuda.dev",
+    locale: "en_ID",
+    twitterHandle: "",
   },
 
   // ---------------------------------------------------------------------------

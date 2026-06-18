@@ -1,7 +1,7 @@
 import { useState, type ComponentProps } from "react";
 import { Copy, Check } from "lucide-react";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { cn, normalizeReactDomProps } from "@/lib/utils";
 
 type CodeBlockProps = ComponentProps<"pre"> & {
   "data-title"?: string;
@@ -9,6 +9,7 @@ type CodeBlockProps = ComponentProps<"pre"> & {
 
 export function CodeBlock({ children, ...props }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const { className, ...preProps } = normalizeReactDomProps(props);
   const title = props["data-title"];
 
   const handleCopy = async () => {
@@ -41,7 +42,10 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
       >
         {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
       </Button>
-      <pre {...props} className={cn("p-4 m-0! overflow-x-auto text-sm", props.className)}>
+      <pre
+        {...preProps}
+        className={cn("p-4 m-0! overflow-x-auto text-sm", className)}
+      >
         {children}
       </pre>
     </div>
