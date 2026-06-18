@@ -69,6 +69,12 @@ export const DATA = {
     email: "aprita.primayuda@gmail.com",
     tel: "+62 811-104-584",
     social: {
+      GitHub: {
+        name: "GitHub",
+        url: "https://github.com/primayuda",
+        icon: Icons.github,
+        navbar: true,
+      },
       email: {
         name: "Send Email",
         url: "mailto:aprita.primayuda@gmail.com",
