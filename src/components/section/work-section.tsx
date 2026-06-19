@@ -7,6 +7,7 @@ import {
 import { CompanyLogo } from "@/components/company-logo";
 import { DATA } from "@/data/resume";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import Markdown from "react-markdown";
 import { cn } from "@/lib/utils";
 
 export default function WorkSection() {
@@ -60,7 +61,9 @@ export default function WorkSection() {
             </div>
           </AccordionTrigger>
           <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground">
-            {work.description}
+            <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert prose-sm prose-a:text-foreground prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-primary">
+              <Markdown>{work.description}</Markdown>
+            </div>
           </AccordionContent>
         </AccordionItem>
       ))}

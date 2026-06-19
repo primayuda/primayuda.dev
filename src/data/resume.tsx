@@ -10,9 +10,9 @@ export const DATA = {
   location: "Bogor, Indonesia",
   locationLink: "https://www.google.com/maps/place/Bogor,+Indonesia",
   description:
-    "Service delivery and operations leader with 20+ years managing enterprise IT, telecom, and cybersecurity services across Indonesia.",
+    "Service delivery leader by profession, dive-center owner by passion.",
   summary:
-    "I lead service delivery and customer operations for enterprise accounts, with deep experience across [IT managed services](/#work), [telecommunications](/#work), and [security operations](/#work). At Cisco, I serve as the single point of contact for enterprise delivery and escalation in Indonesia. Previously, I directed a USD 140M/year IT infrastructure managed services contract for XL Axiata at British Telecom, led billing operations for 50M subscribers at Amdocs, and built security operations capabilities at Sembilan Pilar Semesta. Outside of corporate roles, I am Managing Director of [Divers Paradise Komodo](/#work), an SSI dive center in Labuan Bajo, and hold [PADI and SSI diving instructor credentials](/#education).",
+    "I've spent 20+ years leading enterprise IT, telecom, and cybersecurity delivery across Indonesia — currently at Cisco. I also run two dive centers, which is where I learned that uptime and safety are the same discipline whether the stakes are an SLA or a diver's air.",
   avatarUrl: "/picofme.png",
   ogImage: "/picofme.png",
   sections: {
@@ -69,6 +69,12 @@ export const DATA = {
     email: "aprita.primayuda@gmail.com",
     tel: "+62 811-104-584",
     social: {
+      LinkedIn: {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/aprita-primayuda-b6047b18/",
+        icon: Icons.linkedin,
+        navbar: true,
+      },
       GitHub: {
         name: "GitHub",
         url: "https://github.com/primayuda",
@@ -152,16 +158,29 @@ export const DATA = {
     },
     {
       company: "Divers Paradise Komodo",
-      href: "https://diversparadisekomodo.com",
-      badges: ["Managing Director"],
+      href: "https://diversparadisekomodo.com/",
+      badges: ["Co-owner"],
       location: "Labuan Bajo, Flores",
-      title: "Managing Director",
+      title: "Co-owner",
       logoUrl: logoLight("divers-paradise"),
       logoUrlDark: logoDark("divers-paradise"),
       start: "January 2019",
       end: undefined,
       description:
-        "Lead the board of directors of an SSI dive center providing dive trips and diving education at Komodo National Park. The company generates around IDR 5 billion in annual turnover and is a favorite among European and Japanese divers visiting Labuan Bajo. Digitized company workflows for accurate activity and financial tracking, expanded into Japanese and Chinese markets, and conducted SSI Instructor training with an Indonesian Instructor Trainer.",
+        "Lead the board of directors of an SSI dive center providing dive trips and diving education at Komodo National Park. The company generates around IDR 5 billion in annual turnover and is a favorite among European and Japanese divers visiting Labuan Bajo. Digitized company workflows for accurate activity and financial tracking, expanded into Japanese and Chinese markets, and conducted SSI Instructor training with an Indonesian Instructor Trainer. [diversparadisekomodo.com](https://diversparadisekomodo.com/)",
+    },
+    {
+      company: "Nakula Dive Center",
+      href: "https://nakuladive.com/",
+      badges: [],
+      location: "Bogor, Indonesia",
+      title: "Owner/Instructor",
+      logoUrl: logoLight("nakula-dive"),
+      logoUrlDark: logoDark("nakula-dive"),
+      start: "2013",
+      end: undefined,
+      description:
+        "Dive center at Bogor with private pool with more than 1000 students since 2013. Provide scuba diving course, pool refresh for certified diver and try dive for those who wants to experience scuba diving. Link to dive center: [nakuladive.com](https://nakuladive.com/)",
     },
     {
       company: "British Telecom Global Services",

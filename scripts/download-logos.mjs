@@ -17,6 +17,7 @@ const logos = {
   starcore: { siteUrl: "https://starcore.co.id" },
   "secure-task": { siteUrl: "https://securetask.id" },
   "divers-paradise": { siteUrl: "https://diversparadisekomodo.com" },
+  "nakula-dive": { siteUrl: "https://nakuladive.com" },
   bt: { siteUrl: "https://www.bt.com" },
   "168-solution": { siteUrl: "https://168solution.com" },
   amdocs: { siteUrl: "https://www.amdocs.com" },
