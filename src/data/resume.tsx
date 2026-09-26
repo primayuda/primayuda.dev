@@ -14,7 +14,7 @@ export const DATA = {
   summary:
     "I've spent 20+ years leading enterprise IT, telecom, and cybersecurity delivery across Indonesia — currently at Cisco. I also run two dive centers, which is where I learned that uptime and safety are the same discipline whether the stakes are an SLA or a diver's air.",
   avatarUrl: "/picofme.png",
-  ogImage: "/og_image.png",
+  ogImage: "/og_image.webp",
   sections: {
     about: { order: 1, enabled: true, heading: "About" },
     work: { order: 2, enabled: true, heading: "Work Experience", presentLabel: "Present" },

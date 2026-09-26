@@ -1,10 +1,21 @@
 import { defineMiddleware } from "astro:middleware";
+import { HSTS_HEADER, SECURITY_HEADERS } from "@/lib/security-headers";
 
-export const onRequest = defineMiddleware(async (_ctx, next) => {
+export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
-  response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("X-Frame-Options", "DENY");
-  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
+  for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+    if (name === "Content-Security-Policy" && context.url.protocol !== "https:") {
+      response.headers.set(name, value.replace("; upgrade-insecure-requests", ""));
+      continue;
+    }
+    response.headers.set(name, value);
+  }
+
+  // Browsers ignore HSTS on insecure responses. Send it only for HTTPS.
+  if (context.url.protocol === "https:") {
+    response.headers.set("Strict-Transport-Security", HSTS_HEADER);
+  }
+
   return response;
 });

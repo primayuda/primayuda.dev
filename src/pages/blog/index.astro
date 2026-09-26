@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import BlogList from "@/components/BlogList";
 import { getCollection } from "astro:content";
 import { paginate, normalizePage } from "@/lib/pagination";
+import { ChevronLeft } from "lucide-react";
 
 const PAGE_SIZE = 5;
 
@@ -28,6 +29,14 @@ const posts = paginatedPosts.map((post) => ({
 ---
 
 <Layout title="Blog" description="Thoughts on software development, life, and more.">
+  <a
+    href="/"
+    class="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group"
+    aria-label="Back to Home"
+  >
+    <ChevronLeft className="size-3 group-hover:-translate-x-px transition-transform" />
+    Home
+  </a>
   <BlogList
     client:load
     posts={posts}

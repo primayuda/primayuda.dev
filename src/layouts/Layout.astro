@@ -4,6 +4,7 @@ import { DATA } from "@/data/resume";
 import { CONFIG } from "@/data/config";
 import NavbarIsland from "@/components/NavbarIsland";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { personJsonLd } from "@/lib/person-jsonld";
 
 interface Props {
   title?: string;
@@ -30,6 +31,7 @@ const ogImage = image
 
 const { light, dark, radius } = CONFIG.theme;
 const { baseFontSize } = CONFIG.typography;
+const personLd = personJsonLd();
 ---
 
 <html
@@ -106,9 +108,8 @@ const { baseFontSize } = CONFIG.typography;
     `}
     ></style>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <script is:inline type="application/ld+json" set:html={personLd} />
 
     <!-- Primary meta -->
     <title>{pageTitle}</title>
