@@ -3,6 +3,9 @@
 .vscode/
 .wrangler/
 
+# local session notes — never publish
+SESSION-RESUME.md
+
 # build output
 dist/
 
