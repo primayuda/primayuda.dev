@@ -7,6 +7,7 @@ interface Post {
   id: string;
   title: string;
   publishedAt: string;
+  image?: string;
 }
 
 interface Pagination {
@@ -53,6 +54,13 @@ export default function BlogList({ posts, allPostsCount, pagination, pageSize }:
                       <span className="text-xs font-mono tabular-nums font-medium mt-[5px]">
                         {String(indexNumber).padStart(2, "0")}.
                       </span>
+                      {post.image && (
+                        <img
+                          src={post.image}
+                          alt=""
+                          className="size-10 rounded-md object-cover flex-none ring-2 ring-border"
+                        />
+                      )}
                       <div className="flex flex-col gap-y-2 flex-1">
                         <p className="tracking-tight text-lg font-medium">
                           <span className="group-hover:text-foreground transition-colors">
