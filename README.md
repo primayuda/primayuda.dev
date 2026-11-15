@@ -65,7 +65,7 @@ Interested in service delivery, managed services, or diving in Komodo? Reach out
 
 ## Running locally
 
-This site is built with [Astro v6](https://astro.build), React, Tailwind CSS v4, and shadcn/ui, deployed on Cloudflare. Personal data lives in `src/data/resume.tsx`; site settings in `src/data/config.ts`.
+This site is built with [Astro v7](https://astro.build), React, Tailwind CSS v4, and shadcn/ui, deployed on Cloudflare. Personal data lives in `src/data/resume.tsx`; site settings in `src/data/config.ts`.
 
 **Prerequisites:** Node.js >= 22.12.0, pnpm
 
@@ -83,6 +83,8 @@ Open <http://localhost:4321>.
 | `pnpm dev` | Start dev server |
 | `pnpm build` | Production build |
 | `pnpm preview` | Preview production build |
+| `pnpm generate-types` | Generate Cloudflare Worker types (`wrangler types`) |
+| `pnpm download-logos` | Download company logos used on the site |
 
 ## Credits
 
