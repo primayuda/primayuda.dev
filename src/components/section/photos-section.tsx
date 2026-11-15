@@ -37,6 +37,7 @@ export default function PhotosSection() {
                   <img
                     src={photo.src}
                     alt={photo.alt}
+                    loading="lazy"
                     className={`w-full rounded-xl object-cover ${colAspects[colIdx][idx] ?? "aspect-square"}`}
                   />
                 </BlurFade>

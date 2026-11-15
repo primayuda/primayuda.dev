@@ -42,22 +42,23 @@ const personLd = personJsonLd();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- FOUC prevention: apply stored theme before first paint -->
     <script is:inline>
       (function () {
+        var theme = null;
         try {
-          var theme = localStorage.getItem("theme");
-          if (
-            theme === "dark" ||
-            (!theme &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches)
-          ) {
-            document.documentElement.classList.add("dark");
-          } else {
-            document.documentElement.classList.remove("dark");
-          }
+          theme = localStorage.getItem("theme");
         } catch (_) {}
+        var pinned = theme === "light" || theme === "dark";
+        document.querySelector('meta[name="color-scheme"]').content = pinned
+          ? theme
+          : "light dark";
+        var dark = pinned
+          ? theme === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
       })();
     </script>
 
@@ -142,7 +143,7 @@ const personLd = personJsonLd();
     <!-- FlickeringGrid header background - matches template exactly -->
     <div class="absolute inset-0 top-0 left-0 right-0 h-25 overflow-hidden z-0">
       <FlickeringGrid
-        client:load
+        client:idle
         className="h-full w-full"
         squareSize={2}
         gridGap={2}

@@ -13,7 +13,7 @@ export const DATA = {
     "Service delivery leader by profession, dive-center owner by passion.",
   summary:
     "I've spent 20+ years leading enterprise IT, telecom, and cybersecurity delivery across Indonesia — currently at Cisco. I also run two dive centers, which is where I learned that uptime and safety are the same discipline whether the stakes are an SLA or a diver's air.",
-  avatarUrl: "/picofme.png",
+  avatarUrl: "/picofme.webp",
   ogImage: "/og_image.webp",
   sections: {
     about: { order: 1, enabled: true, heading: "About" },

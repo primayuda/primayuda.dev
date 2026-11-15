@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
-import { motion, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
-import { createContext, useContext, useRef, type ReactNode } from "react";
+import { useRef, type MouseEvent, type ReactNode } from "react";
 
 interface DockProps {
   className?: string;
@@ -19,71 +18,59 @@ const DEFAULT_DISTANCE = 100;
 const BASE_SIZE = 40;
 const BASE_ICON_SIZE = 20;
 const ICON_SIZE_RATIO = 0.5;
-const SPRING = { mass: 0.1, stiffness: 150, damping: 12 };
-
-interface DockContextValue {
-  mouseX: MotionValue<number>;
-  magnification: number;
-  distance: number;
-}
-
-const DockContext = createContext<DockContextValue | null>(null);
 
 const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE }: DockProps) => {
-  const mouseX = useMotionValue(Infinity);
-
-  return (
-    <DockContext.Provider value={{ mouseX, magnification, distance }}>
-      <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        className={cn("mx-auto w-max h-full flex items-end justify-center overflow-visible rounded-full border", className)}
-      >
-        {children}
-      </motion.div>
-    </DockContext.Provider>
-  );
-};
-
-const DockIcon = ({ className, children }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const context = useContext(DockContext);
 
-  if (!context) {
-    throw new Error("DockIcon must be used within a Dock component");
-  }
+  const icons = () => ref.current?.querySelectorAll<HTMLElement>("[data-dock-icon]") ?? [];
 
-  const { mouseX, magnification, distance } = context;
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    for (const icon of icons()) {
+      const bounds = icon.getBoundingClientRect();
+      const offset = Math.abs(e.clientX - bounds.x - bounds.width / 2);
+      const proximity = Math.max(0, 1 - offset / distance);
+      icon.style.setProperty("--dock-size", `${BASE_SIZE + (magnification - BASE_SIZE) * proximity}px`);
+      icon.style.setProperty(
+        "--dock-icon-size",
+        `${BASE_ICON_SIZE + (magnification * ICON_SIZE_RATIO - BASE_ICON_SIZE) * proximity}px`
+      );
+    }
+  };
 
-  const distanceCalc = useTransform(mouseX, (val: number) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
-
-  const containerSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_SIZE, magnification, BASE_SIZE]),
-    SPRING
-  );
-  const iconSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_ICON_SIZE, magnification * ICON_SIZE_RATIO, BASE_ICON_SIZE]),
-    SPRING
-  );
+  const handleMouseLeave = () => {
+    for (const icon of icons()) {
+      icon.style.removeProperty("--dock-size");
+      icon.style.removeProperty("--dock-icon-size");
+    }
+  };
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      style={{ width: containerSize, height: containerSize }}
-      className={cn("relative flex aspect-square items-center justify-center rounded-full shrink-0", className)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={cn("mx-auto w-max h-full flex items-end justify-center overflow-visible rounded-full border", className)}
     >
-      <motion.div
-        style={{ width: iconSize, height: iconSize }}
-        className="flex items-center justify-center"
-      >
-        {children}
-      </motion.div>
-    </motion.div>
+      {children}
+    </div>
   );
 };
+
+const DockIcon = ({ className, children }: DockIconProps) => (
+  <div
+    data-dock-icon
+    style={{ width: "var(--dock-size, 40px)", height: "var(--dock-size, 40px)" }}
+    className={cn("dock-icon relative flex aspect-square items-center justify-center rounded-full shrink-0", className)}
+  >
+    <div
+      style={{ width: "var(--dock-icon-size, 20px)", height: "var(--dock-icon-size, 20px)" }}
+      className="dock-icon-inner flex items-center justify-center"
+    >
+      {children}
+    </div>
+  </div>
+);
 
 export { Dock, DockIcon };
 export type { DockProps, DockIconProps };

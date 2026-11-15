@@ -115,6 +115,50 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+:root {
+  color-scheme: light dark;
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
+}
+
+@keyframes blur-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 var(--blur-fade-y, -6px);
+    filter: blur(var(--blur-fade-blur, 6px));
+  }
+}
+
+@layer components {
+  .blur-fade {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: blur-fade-in var(--blur-fade-duration, 0.4s) ease-out
+        var(--blur-fade-delay, 0s) both;
+    }
+  }
+
+  .dock-icon {
+    transition-property: color, background-color, border-color;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition-property: width, height, color, background-color, border-color;
+    }
+  }
+
+  .dock-icon-inner {
+    @media (prefers-reduced-motion: no-preference) {
+      transition: width 150ms ease-out, height 150ms ease-out;
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
