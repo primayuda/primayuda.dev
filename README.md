@@ -6,7 +6,8 @@
 
 [**Live site**](https://primayuda.dev) · [LinkedIn](https://www.linkedin.com/in/aprita-primayuda-b6047b18/) · [GitHub](https://github.com/primayuda)
 
-![primayuda.dev homepage](./public/website-preview.png)
+<img src="./public/website-preview-laptop.png" alt="primayuda.dev on a laptop" width="680">
+<img src="./public/website-preview-mobile.png" alt="primayuda.dev on a phone" width="210">
 
 </div>
 
@@ -49,8 +50,9 @@ Service Delivery Management · IT Managed Services · Enterprise Account Managem
 
 ## Blog
 
-Personal writing in Indonesian — diving, travel, and everyday stories:
+Writing on service delivery, diving, and everyday life:
 
+- [What Normal Looks Like](https://primayuda.dev/blog/what-normal-looks-like) — noticing the small deviation before it becomes the emergency
 - [Tersangkut di Bajo](https://primayuda.dev/blog/tersangkut-di-bajo) — from dive instructor to full-time marine tourism in Labuan Bajo
 - [Imam dan Khatib Dadakan](https://primayuda.dev/blog/imam-dan-khatib-dadakan) — Idul Fitri prayer at home during the pandemic
 
@@ -65,7 +67,7 @@ Interested in service delivery, managed services, or diving in Komodo? Reach out
 
 ## Running locally
 
-This site is built with [Astro v7](https://astro.build), React, Tailwind CSS v4, and shadcn/ui, deployed on Cloudflare. Personal data lives in `src/data/resume.tsx`; site settings in `src/data/config.ts`.
+This site is built with [Astro v7](https://astro.build), React, Tailwind CSS v4, and shadcn/ui, deployed on Cloudflare. Personal data lives in `src/data/resume.tsx`; site settings in `src/data/config.ts`; pnpm overrides in `pnpm-workspace.yaml`. The color scheme follows the operating system until a visitor chooses light or dark.
 
 **Prerequisites:** Node.js >= 22.12.0, pnpm
 
